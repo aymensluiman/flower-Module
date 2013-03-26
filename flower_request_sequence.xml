@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+     <record id="sequence_flower_request_type"  model="ir.sequence.type">
+        <field name="name">Flower Request Sequence Type</field>
+        <field name="code">request.data</field>
+     </record>
+  
+
+     <record id="sequence_flower_request"  model="ir.sequence">
+        <field name="name">Flower Request Sequence </field>
+        <field name="code">request.data</field>
+        <field name="padding">5</field>
+        <field name="prefix">FO/</field>   
+        <field name="number_next">1</field>
+ 
+     </record>
+
+
+  </data>
+</openerp> 
