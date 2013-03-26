@@ -1,0 +1,279 @@
+<?xml version="1.0"  encoding="utf-8"?>
+<openerp>
+   <data>
+    <record id="id_flower_form" model="ir.ui.view">
+       <field name="name">form.flower.view</field>
+       <field name="model">flower.flower</field>
+       <field name="type">form</field>
+       <field name="arch"  type="xml">
+            <form string="Add New Flower">
+                 <field name="name"></field>
+                 <field name="type"/>
+                 <field name="color"/>
+                 <field name="date"/>
+                 <field name="supplier_ids"/>
+                
+            </form> 
+       </field>  
+    </record>
+<!-- Tree View -->
+     
+    <record id="id_flower_tree" model="ir.ui.view">
+       <field name="name">tree.flower.view</field>
+       <field name="model">flower.flower</field>
+       <field name="type">tree</field>
+       <field name="arch"  type="xml">
+            <tree string="Flowers Info">
+                 <field name="name" />
+                 <field name="type"/>
+                 <field name="color" />
+                 
+            </tree> 
+       </field>  
+       
+    </record>
+<!-- supplier form-->
+   <record id="id_supplier_view_form" model="ir.ui.view">
+         <field name="name">form.supplier.view</field>
+         <field name="model">supplier.supplier</field>
+         <field name="type">form</field>
+         <field name="arch"   type="xml">  
+            <form string="Suppliers">
+               <field name="name"></field>
+               <field name="address"/>
+               
+            </form>
+         </field>
+   </record>
+
+<!-- supplier Tree-->
+   <record id="id_supplier_tree" model="ir.ui.view">
+       <field name="name">tree.supplier.view</field>
+       <field name="model">supplier.supplier</field>
+       <field name="type">tree</field>
+       <field name="arch"  type="xml">
+            <tree string="Suppliers Info">
+                 <field name="name"></field>
+                 <field name="address"/>
+                 
+            </tree> 
+       </field>  
+    </record>
+<!-- request form-->
+
+<record id="id_form_request" model="ir.ui.view">
+   <field name="name">request.form.view</field>
+   <field name="model">request.request</field>
+   <field name="type">form</field>
+   <field name="arch" type="xml">
+      <form string="Purchase Requset Form">
+           
+           
+           <field name="flower_id" colspan="4"/>
+           <field name="qo" colspan="2"/>
+           <field name="price" colspan="2"/>
+           <field name="note" colspan="4"/>
+      </form>
+   </field>        
+</record>
+<!--request Tree-->
+<record id="id_tree_request" model="ir.ui.view">
+  <field name="name">request.tree.view</field>
+  <field name="model">request.request</field>
+  <field name="type">tree</field>
+  <field name="arch"  type="xml">
+      <tree string="Items:">
+           <field name="flower_id"/>
+           <field name="qo"/>
+           <field name="price"/>
+      </tree>
+  </field>
+</record>
+
+
+<!--Request Data Form-->
+<record id="id_request_data_form" model="ir.ui.view">
+    <field name="name">request.data.form</field>
+    <field name="model">request.data</field>
+    <field name="type">form</field>
+    <field name="arch"  type="xml">
+       <form string="Request Form">
+        <field name="req_ref"/>
+        <field name="cust_name" />
+        <field name="time" />
+        <field name="qoute_no"/>
+        
+        <field name="flowers_ids" colspan="4" />
+        <group colspan="2" col="8"  >
+        <button  name="confirm"  string="Confirm" states="draft"/>
+        <button  name="approve"  string="approve" states="confirmed"/>
+        <button  name="done"     string="done"  states="approved"/>
+        <button  name="cancel"   string="cancel" states="confirmed,approved"/>
+        <button  name="Print_qoute" string="Print Qoutation" states="done" type="object"/>
+
+        </group>
+        <field name="state"/> 
+       </form>
+    </field>
+</record>
+
+
+<!---->
+
+<!--Request Data Tree-->
+<record id="id_request_data_tree" model="ir.ui.view">
+    <field name="name">request.data.tree</field>
+    <field name="model">request.data</field>
+    <field name="type">tree</field>
+    <field name="arch"  type="xml">
+       <tree string="Request Form">
+        <field name="req_ref"/>
+        <field name="cust_name"/>
+        <field name="state" groups="flower_module.flower_field_group_id"/>
+        <!--filter string="By State" domain=[] context={'group_by' : 'state'} /-->
+       </tree>
+    </field>
+</record>
+
+<!-- quote form-->
+<record id="id_qoute_form" model="ir.ui.view">
+  <field name="name">quote.form.view</field>
+  <field name="model">qoute</field>
+  <field name="type">form</field>
+  <field name="arch"  type="xml">
+    <form string="Qoutation">
+       <field name="no"/>
+       <field name="cust_name"/>
+       <field name="ref"/>
+       <field name="tax"/>
+       <field name="length"/>
+       <field name="date_request"/>
+       <field name="date_qoute"/>
+       <field name="flower_items" colspan="4"/>
+       <field name="request_id"/>
+       <field name="state" groups="flower_module.flower_field_group_id"/>
+    </form>
+  </field>
+</record>
+
+
+
+<!-- qoute tree view -->
+<record id="id_quote_tree"  model="ir.ui.view">
+  <field name="name">Quote.view.tree</field>
+  <field name="model">qoute</field>
+  <field name="type">tree</field>
+  <field name="arch"  type="xml">
+    <tree string="Quotations History:">
+         <field name="no"/>
+         <field name="ref"/>
+         <field name="cust_name"/>
+         <field name="state"/> 
+    </tree>
+  </field>
+</record>
+
+<!-- Flowers ITEMS Qoutation -->
+<record id="flower_item_qoute_form_id"  model="ir.ui.view">
+  <field name="name">Flower.items.form</field>
+  <field name="model">flower.qoute</field>
+  <field name="type">form</field>
+  <field name="arch"  type="xml">
+    <form  string="Flowers in Qoutation">
+       <field name="flower_name"/>
+       <field name="quantity"/>
+       <field name="supplier"/>
+    </form>
+  </field>
+</record>
+
+<!-- Flowers Items Quotation -->
+<record id="flower_item_qoute_tree_id"  model="ir.ui.view">
+  <field name="name">Flower.items.tree</field>
+  <field name="model">flower.qoute</field>
+  <field name="type">tree</field>
+  <field name="arch"  type="xml">
+    <tree  string="Flowers in Qoutation">
+       <field name="flower_name"/>
+       <field name="quantity"/>
+       
+    </tree>
+  </field>
+</record>
+
+
+
+
+
+
+<!--search flower view-->
+<record id="id_flower_search" model="ir.ui.view">
+       <field name="name">search.flower.view</field>
+       <field name="model">flower.flower</field>
+       <field name="type">search</field>
+       <field name="arch"  type="xml">
+            <search string="search By:">
+                 <field name="name" />
+                 <field name="type"/>
+                 <field name="color" />
+                 <filter name="by_date" string="Year" domain="[('date','>=','01-01-2013')]"/>
+            </search> 
+       </field>  
+       
+    </record>
+
+<!-- action flower menu-->
+    <record id="action_flower_view_id" model="ir.actions.act_window">
+       <field name="name">Flowers</field>
+       <field name="res_model">flower.flower</field>
+       <field name="view_type">form</field>
+       <field name="view_mode">tree,form</field>
+    </record>
+<!-- action supplier menu-->
+
+    <record id="action_supplier_view_id" model="ir.actions.act_window">
+       <field name="name">Flowers Suppliers</field>
+       <field name="res_model">supplier.supplier</field>
+       <field name="view_type">form</field>
+       <field name="view_mode">tree,form</field>
+    </record>
+
+<!-- action request menu-->
+<record id="action_request_view_id" model="ir.actions.act_window">
+   <field name="name">Flowers Request</field>
+   <field name="res_model">request.request</field>
+   <field name="view_type">form</field>
+   <field name="view_mode">tree,form</field>
+</record>
+
+<!--action request form-->
+
+<record id="action_request_data_form_id"  model="ir.actions.act_window">
+   <field name="name">Flower Purchase Request</field>
+   <field name="res_model">request.data</field>
+   <field name="view_type">form</field>
+   <field name="view_mode">tree,form</field>
+</record>
+<!-- action quote form -->
+
+<record id="action_qoute_view_id" model="ir.actions.act_window">
+  <field name="name">Supplier Quotations</field>
+  <field name="res_model">qoute</field>
+  <field name="view_type">form</field>
+  <field name="view_mode">tree,form</field>
+</record>
+
+
+
+<!-- Menu -->
+    <menuitem id="flower_menu_id" name="Flowers"/>
+    <menuitem id="flower_managment_menu_id" name="Managment" parent="flower_menu_id"/>
+    <menuitem id="request_menu_id" name="Purchase" parent="flower_menu_id"/>
+ 
+    <menuitem action="action_flower_view_id" id="action_menu_flower_view" parent="flower_managment_menu_id"/>
+    <menuitem action="action_supplier_view_id" id="action_menu_supplier_view" parent="flower_managment_menu_id"/>
+    
+    <menuitem action="action_qoute_view_id" id="action_menu_qoute_view" parent="request_menu_id"/>
+    <menuitem action="action_request_data_form_id" id="action_menu_request_data_id" parent="request_menu_id"/> 
+  </data>
+</openerp> 
